@@ -13,15 +13,7 @@ export type ClientsStore = {
 };
 
 export const clients = atom<ClientsStore>({
-  clients: [
-    {
-      name: 'test',
-      description: 'dada',
-      createdAt: new Date(),
-      deletedAt: null,
-      id: 'fadfasdfdasf',
-    },
-  ],
+  clients: [],
   isLoading: true,
 });
 
@@ -41,7 +33,7 @@ export const createClient = (props: AddClientProps) => {
   const onCreate = (client: Client) => {
     clients.set({
       ...clients.get(),
-      clients: [...clients.get().clients, client],
+      clients: [client, ...clients.get().clients],
     });
   };
   addClient(props).then(onCreate);

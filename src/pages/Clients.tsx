@@ -1,19 +1,17 @@
 import { useStore } from '@nanostores/react';
-import { useEffect } from 'react';
-import { clients, fetchClients } from '../stores/clients';
+import { clients } from '../stores/clients';
 import { Title } from '../components/Title';
 import { Loading } from '../components/Loading';
 import { ClientsList } from '../components/ClientsList';
+import { Link } from 'react-router-dom';
 
 export const Clients = () => {
   const clientsStore = useStore(clients);
 
-  useEffect(() => {
-    fetchClients();
-  }, []);
   return (
     <>
       <Title titleName="Клиенты" />
+      <Link to="/create">Добавить</Link>
       {clientsStore.isLoading ? (
         <Loading />
       ) : (
